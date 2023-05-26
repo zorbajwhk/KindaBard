@@ -21,6 +21,12 @@ function createWindow() {
       nodeIntegration: true, // Enable Node.js integration in the renderer process.
       partition: "persist:kinda-bard", // Set a custom partition name to persist session data.
     },
+    title: 'Kinda Bard'
+  });
+
+  // Prevent the window title from changing when the page loads
+  mainWindow.on('page-title-updated', (event) => {
+    event.preventDefault();
   });
 
   // Load the Google.com website.
@@ -31,6 +37,9 @@ function createWindow() {
     saveWindowState(mainWindow);
   });
 
+  // Hide the default menu bar
+  Menu.setApplicationMenu(null);
+
   // Right-click context menu
   mainWindow.webContents.on("context-menu", (e, props) => {
     const { x, y } = props;
@@ -38,9 +47,32 @@ function createWindow() {
     // Create the context menu template
     const contextMenuTemplate = [
       {
+        label: 'Copy',
+        role: 'copy',
+      },
+      {
+        label: 'Paste',
+        role: 'paste',
+      },
+      { type: 'separator' },
+      {
+        label: 'Reload',
+        click: () => mainWindow.webContents.reload(),
+      },
+      { type: 'separator' },
+      {
         label: "Back",
         enabled: mainWindow.webContents.canGoBack(),
         click: () => mainWindow.webContents.goBack(),
+      },
+      { type: 'separator' },
+      {
+        label: 'Quit',
+        click: () => {
+          if (process.platform !== "darwin") {
+            app.quit();
+          }
+        },
       },
     ];
 
