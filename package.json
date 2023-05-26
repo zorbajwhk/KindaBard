@@ -1,0 +1,35 @@
+{
+  "name": "kinda-bard",
+  "version": "1.0.0",
+  "description": "Just a Bard wrapper.",
+  "main": "main.js",
+  "author": {
+    "name": "Zorba Jobs Wong",
+    "email": "me@zorbawong.com",
+    "url": "https://zorbawong.com"
+  },
+  "scripts": {
+    "start": "electron main.js",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^24.4.0",
+    "electron-builder": "^24.4.0"
+  },
+  "build": {
+    "productName": "Kinda Bard",
+    "appId": "com.zorbawong.kinda-bard",
+    "win": {
+      "target": "nsis",
+      "icon": "assets/img/icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/img/icon.icns",
+      "category": "public.app-category.utilities"
+    },
+    "linux": {
+      "target": "deb"
+    }
+  }
+}
