@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "electron main.js",
-    "build": "electron-builder"
+    "build": "electron-builder -mwl"
   },
   "devDependencies": {
     "electron": "^24.4.0",
@@ -27,6 +27,10 @@
       "target": "dmg",
       "icon": "assets/img/icon.icns",
       "category": "public.app-category.utilities"
+    },
+    "dmg": {
+      "icon": "assets/img/icon.icns",
+      "title": "KindaBard-1.0.0"
     },
     "linux": {
       "target": "deb"
